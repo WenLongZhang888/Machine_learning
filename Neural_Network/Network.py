@@ -8,8 +8,19 @@ class Network(object):
         '''
         self.connections = Connections()
         self.layers = []
-        for i in range(len(layers) - 1):
-            self.layers.append(Layer(i, layers[i], layers[i+1]))
+        layer_count = len(layers)
+        node_count = 0
+        for i in range(layer_count):
+            self.layers.append(Layer(i, layers[i]))
+        for layer in range(layer_count - 1):
+            connections = [Connections(upstream_node, downstream_node)
+                           for upstream_node in self.layers[layer].nodes
+                           for downstream_node in self.layers[layer + 1].nodes[:-1]]
+            for conn in connections:
+                self.connections.add_connection(conn)
+                conn.downstream_node.append_upstream_connection(conn)
+                conn.upstream_node.append_downstream_connection(conn)
+        
     
     def train(self, labels, data_set, rate, iteration):
         '''

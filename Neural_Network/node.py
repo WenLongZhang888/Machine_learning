@@ -35,7 +35,6 @@ class Node(object):
     def calc_output(self):
         output = reduce(lambda ret, conn: ret + conn.upstream_node.output * conn.weight, self.upstream, 0.0)
         self.output = 1.0 / (1.0 + math.exp(-output))
-        return self.output
 
     # 计算隐藏层节点的误差项
     def calc_hidden_layer_delta(self):

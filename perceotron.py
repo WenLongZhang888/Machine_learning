@@ -11,7 +11,7 @@ class Perceptron(object):
         return 'weights\t:%s\nbias\t:%f\n' % (self.weights, self.bias)
     
     # map(function, iterable) 函数将一个函数映射到可迭代对象上，返回一个迭代器，把iterable用到function中
-    # reduce(function, iterable) 函数将一个函数累积应用到可迭代对象上，返回一个结果
+    # reduce(function, iterable) 函数将一个函数累积应用到可迭代对象上，返回一个结果，可以有第三个参数作为初始值
     # zip(iterable1, iterable2) 函数将两个可迭代对象合并成一个元组，返回一个迭代器
     # reduce(...,0.0) 表示初始值为0.0
     def predict(self, input_vec):
